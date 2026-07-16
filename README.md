@@ -141,7 +141,7 @@ Yakında eklenecektir.
 # ⚙️ Kurulum
 
 ```bash
-git clone https://github.com/KULLANICI_ADIN/MiniShopMVC.git
+git clone https://github.com/M3hteran/MiniShopMVC.git
 ```
 
 ```bash
