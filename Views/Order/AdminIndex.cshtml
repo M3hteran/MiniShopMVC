@@ -1,0 +1,61 @@
+﻿@model List<MiniShopMVC.Models.Order>
+@using MiniShopMVC.Models.Enums
+
+<div class="container mt-4">
+	<h2>Siparişlerim</h2>
+	@if (!Model.Any())
+	{
+		<div class="alert alert-info">
+			Henüz Siparişiniz Bulunmamaktadır.
+		</div>
+	}
+	else
+	{
+		@foreach (var order in Model)
+		{
+			<div class="card mb-3">
+				<div class="card-header">
+					<strong>Sipariş No :</strong>@order.Id
+					<br />
+					<strong>Sipariş Tarihi :</strong>@order.OrderDate.ToString("dd.MM.yyyy HH.mm")
+					<br />
+					<strong>Kullanıcı :</strong>@order.AppUser.UserName
+					<br />
+					<strong>Durum :</strong>
+					<form asp-action="UpdateStatus" method="post">
+						<input type="hidden" name="orderId" value="@order.Id" />
+						<select name="status" class="form-select" onchange="this.form.submit()">
+							<option selected="@(order.Status == OrderStatus.Pending)" value="Pending">Pending</option>
+							<option selected="@(order.Status == OrderStatus.Preparing)" value="Preparing">Preparing</option>
+							<option selected="@(order.Status == OrderStatus.Shipped)" value="Shipped">Shipped</option>
+							<option selected="@(order.Status == OrderStatus.Complated)" value="Complated">Complated</option>
+							<option selected="@(order.Status == OrderStatus.Cancelled)" value="Cancelled">Cancelled</option>
+						</select>
+					</form>
+				</div>
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<tr>Ürün</tr>
+							<tr>Adet</tr>
+							<tr>Fiyat</tr>
+							<tr>Toplam</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in order.OrderItems)
+							{
+								<tr>
+									<td>@item.Product.Name</td>
+									<td>@item.Quantity</td>
+									<td>@item.UnitPrice $</td>
+									<td>@(item.Quantity * item.UnitPrice) +</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+					<a asp-action="Details" asp-route-id="@order.Id" class="btn btn-primary btn-sm">Detay</a>
+				</div>
+			</div>
+		}
+	}
+</div>

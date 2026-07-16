@@ -1,0 +1,13 @@
+﻿@model MiniShopMVC.Models.Product
+
+<div class="container mt-5">
+	<h2>Ürün Sil</h2>
+	<h4>@Model.Name ürünü silmek istediğinize Emin misiniz?</h4>
+
+	<form asp-action="Delete" method="post">
+		<input asp-for="Id" type="hidden" />
+		<button type="submit" class="btn btn-danger">Evet-Sil</button>
+		<a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+	</form>
+
+</div>

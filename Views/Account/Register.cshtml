@@ -1,0 +1,45 @@
+﻿@model MiniShopMVC.ViewModels.RegisterViewModel;
+
+<div class="row justify-content-center mt-5">
+	<div class="col-md-5">
+		<div class="card shadow">
+			<div class="card-header bg-primary text-white">
+				<h4 class="mb-0">Kayıt Ol</h4>
+			</div>
+			<div class="card-body">
+				<form asp-action="Register" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger mb-3">
+					</div>
+					<div class="mb-3">
+						<label>Kullanıcı Adı:</label>
+						<input asp-for="UserName" class="form-control" />
+						<span asp-validation-for="UserName" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label>Email:</label>
+						<input asp-for="Email" class="form-control" />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label>Şifre:</label>
+						<input asp-for="Password" class="form-control" />
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label>Şifre Tekrarla:</label>
+						<input asp-for="ConfirmPasswood" class="form-control" />
+						<span asp-validation-for="ConfirmPasswood" class="text-danger"></span>
+					</div>
+					<div class="d-flex justify-content-end gap-2">
+						<a asp-action="Login" class="btn btn-secondary">Girişe Dön</a>
+						<button type="submit" class="btn btn-primary">Kayıt ol</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

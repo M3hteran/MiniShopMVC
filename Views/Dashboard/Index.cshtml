@@ -1,0 +1,61 @@
+﻿@model MiniShopMVC.ViewModels.DashboradViewModel
+
+<div class="container mt-4">
+	<h2 class="mb-4">Admin DashBoard</h2>
+	<div class="row g-3">
+		<div class="col-md-3">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<h6>Toplam Ürün</h6>
+					<h3>@Model.ProductCount</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<h6>Toplam Kullanıcı</h6>
+					<h3>@Model.UserCount</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<h6>Toplam Sipariş</h6>
+					<h3>@Model.OrderCount</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<h6>Toplam Ciro</h6>
+					<h3>@Model.TotalRevenue</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="card shadow-sm border-warning">
+				<div class="card-body text-center">
+					<h6>Düşük Stoklu Ürün</h6>
+					<h3 class="text-warning">@Model.LowStockProductCount</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="card shadow-sm border-danger">
+				<div class="card-body text-center">
+					<h6>Bugünkü Sipariş</h6>
+					<h3 class="text-danger">@Model.TodayOrderCount</h3>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model MiniShopMVC.Models.Product
+
+<div class="container mt5">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="card shadow">
+				<img src="@Model.ImageUrl"
+					 class="card-img-top"
+					 style="height:400px; object-fit:cover;" />
+				<div class="card-body bg-dark text-white">
+					<h2 class="card-title">@Model.Name</h2>
+					<h4 class="text-primary">@Model.Price ₺</h4>
+					<hr />
+					<h5>Kategori</h5>
+					<p>@Model.Category?.Name</p>
+					<h5>Açıklama</h5>
+					<p>@Model.Description</p>
+					<div class="d-flex justify-content-end gap-2">
+						<a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+						<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

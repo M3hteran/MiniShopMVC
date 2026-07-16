@@ -1,0 +1,71 @@
+﻿@model MiniShopMVC.Models.Cart?
+
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-danger">
+		@TempData["Error"]
+	</div>
+}
+
+<div class="container mt-4">
+	<h2>Sepetim</h2>
+	@if (Model == null || Model.CartItems.Count == 0)
+	{
+		<div class="alert alert-info">
+			Sepetiniz Boş
+		</div>
+		<a asp-controller="Product" asp-action="Index" class="btn btn-primary">
+			Alışverişe Devam Et
+		</a>
+	}
+	else
+	{
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ürün</th>
+					<th>Fiyat</th>
+					<th>Adet</th>
+					<th>Toplam</th>
+					<th>İşlem</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.CartItems)
+				{
+					<tr>
+						<td>@item.Product.Name</td>
+						<td>@item.UnitPrice</td>
+						<td>
+							<div class="d-flex align-items-center gap-2">
+								<form asp-action="Decrease" method="post">
+									<input type="hidden" name="productId" value="@item.ProductId" />
+									<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="bi bi-dash"></i></button>
+								</form>
+								<span>@item.Quantity</span>
+								<form asp-action="Increase" method="post">
+									<input type="hidden" name="productId" value="@item.ProductId" />
+									<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="bi bi-plus"></i></button>
+								</form>
+							</div>
+						</td>
+						<td>@(item.Quantity * item.UnitPrice)</td>
+						<td>
+							<form asp-action="Remove" method="post" onsubmit="return confirm('Bu Ürünü sepetten kaldırmak istiyor musunuz?');">
+								<input type="hidden" name="productId" value="@item.ProductId" />
+								<button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<div class="text-end">
+			<h4>Sepet Toplamı:<b>@Model.TotalPrice $</b></h4>
+		</div>
+
+		<form asp-controller="Order" asp-action="Create" method="post">
+			<button type="submit" class="btn btn-success">Siparişi Tamamla</button>
+		</form>
+	}
+</div>
